@@ -129,3 +129,19 @@
 .share-button i {
   font-size: 14px;
 }
+
+/* -----TWEAK STYLING------ */
+.share-button {
+  height: 100%;
+}
+
+.mp3-list {
+  margin-bottom: 5px;
+}
+
+.mp3-list li {
+  margin-left: 0;
+  margin-bottom: 5px;
+}
+
+/* --------- */
