@@ -30,13 +30,22 @@ function force_download_mp3()
             header('Expires: 0');
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
-            header('Content-Length: ' . filesize($mp3_url));
-            flush(); // Flush system output buffer
-            readfile($mp3_url);
-            exit;
+
+            // Use cURL to get remote file data
+            $ch = curl_init($mp3_url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_HEADER, false);
+            $data = curl_exec($ch);
+            curl_close($ch);
+
+            if ($data) {
+                echo $data;
+                exit;
+            }
         }
     }
 }
+
 add_action('template_redirect', 'force_download_mp3');
 
 
