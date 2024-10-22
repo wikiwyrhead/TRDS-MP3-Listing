@@ -12,20 +12,26 @@
 
 .mp3-title {
   text-align: left;
+  flex-grow: 1; /* Allow the title to take up available space */
+  margin-right: 10px; /* Adds space between the title and the buttons */
 }
 
 .mp3-actions {
   display: flex;
-  gap: 4px; /* Adds space between the download button and the share button */
+  gap: 4px; /* Adds space between the download and share buttons */
+  justify-content: flex-end; /* Keeps the buttons right-aligned */
+  align-items: center; /* Vertically aligns buttons */
 }
 
 .mp3-list li {
   margin-bottom: 10px;
   font-family: "Montserrat", sans-serif;
+  margin-left: 0;
 }
 
 .mp3-list li .download-button,
 .mp3-list li .share-button {
+  min-width: 40px;
   font-size: 14px;
   font-weight: 500;
   padding: 5px 10px;
@@ -34,11 +40,15 @@
   border-radius: 4px;
   cursor: pointer;
   transition: opacity 0.3s ease;
+  min-width: 40px; /* Minimum width to prevent shrinking */
+  text-align: center; /* Center the content inside the button */
+  flex-shrink: 0; /* Prevents buttons from shrinking */
 }
 
 .mp3-list li .download-button:hover,
 .mp3-list li .share-button:hover {
   opacity: 0.8; /* Visual feedback on hover */
+  min-width: 40px;
 }
 
 .share-button-wrapper {
@@ -65,6 +75,7 @@
 }
 
 .share-dropdown a {
+  width: 100% !important;
   display: flex;
   align-items: center;
   color: #333;
@@ -77,7 +88,8 @@
 }
 
 .share-dropdown a:hover {
-  background-color: #f0f0f0;
+  background-color: #e7827d; /* Background color on hover */
+  width: 100% !important;
 }
 
 .share-dropdown img {
@@ -101,13 +113,7 @@
 /* Styling for download and share buttons */
 .mp3-list li a,
 .mp3-list li button {
-  /* font-size: 16px;
-  font-weight: 500;
-  padding: 5px 10px;
-  margin-right: 5px; */
   border: none;
-  /* background-color: #e5e5e5;
-  color: #030303; */
   text-decoration: none;
   border-radius: 4px;
   cursor: pointer;
@@ -115,11 +121,6 @@
   display: inline-flex;
   align-items: center;
 }
-
-/* .mp3-list li a:hover,
-.mp3-list li button:hover {
-  background-color: #c0c0c0;
-} */
 
 .share-button i {
   margin-right: 5px; /* Adds space between the icon and the button text */
@@ -130,18 +131,7 @@
   font-size: 14px;
 }
 
-/* -----TWEAK STYLING------ */
 .share-button {
-  height: 100%;
+  height: 100% !important;
+  text-align: center !important;
 }
-
-.mp3-list {
-  margin-bottom: 5px;
-}
-
-.mp3-list li {
-  margin-left: 0;
-  margin-bottom: 5px;
-}
-
-/* --------- */
