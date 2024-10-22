@@ -373,7 +373,12 @@ function mp3_listing_shortcode()
                     <div class="mp3-actions">
                         <a href="' . esc_url(add_query_arg('mp3_id', get_the_ID(), home_url('/'))) . '" class="download-button" style="background-color: ' . esc_attr($download_button_color) . '; color: #fff;">⬇️</a> 
                         <div class="share-button-wrapper">
-                            <button class="share-button" data-title="' . esc_attr($post_title) . '" data-url="' . esc_url($post_url) . '" style="background-color: ' . esc_attr($share_button_color) . '; color: #fff;">Share</button>
+                          <button class="share-button" data-title="' . esc_attr($post_title) . '" data-url="' . esc_url($post_url) . '" style="background-color: ' . esc_attr($share_button_color) . '; color: #fff;">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle;">
+        <path d="M18 8c1.25 0 2.25-1 2.25-2.25S19.25 3.5 18 3.5 15.75 4.5 15.75 5.75c0 .15.02.3.06.45l-7.8 4.05c-.33-.17-.7-.3-1.1-.3-1.2 0-2.25 1.05-2.25 2.25s1.05 2.25 2.25 2.25c.55 0 1.04-.2 1.41-.53l7.8 4.05c-.03.13-.06.28-.06.43 0 1.25 1 2.25 2.25 2.25s2.25-1 2.25-2.25-1-2.25-2.25-2.25c-.55 0-1.04.2-1.41.53l-7.8-4.05c.04-.15.06-.3.06-.45 0-.15-.02-.3-.06-.45l7.8-4.05c.37.34.86.53 1.41.53z" stroke="#fff" stroke-width="1.5" fill="#fff"/>
+    </svg>
+</button>
+
                             <div class="share-dropdown" style="display: none;">
                                 <a href="' . esc_url($facebook_share_url) . '" target="_blank" title="Share on Facebook"><img src="' . plugin_dir_url(__FILE__) . 'icons/facebook.png" alt="Facebook" /> Facebook</a>
                                 <a href="' . esc_url($twitter_share_url) . '" target="_blank" title="Share on Twitter"><img src="' . plugin_dir_url(__FILE__) . 'icons/twitter.png" alt="Twitter" /> Twitter</a>
