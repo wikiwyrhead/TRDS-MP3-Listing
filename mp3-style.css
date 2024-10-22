@@ -18,37 +18,38 @@
 
 .mp3-actions {
   display: flex;
-  gap: 4px; /* Adds space between the download and share buttons */
+  gap: 2px; /* Adds space between the download and share buttons */
   justify-content: flex-end; /* Keeps the buttons right-aligned */
   align-items: center; /* Vertically aligns buttons */
 }
 
 .mp3-list li {
   margin-bottom: 10px;
-  font-family: "Montserrat", sans-serif;
-  margin-left: 0;
+  /* Removed font-family to inherit from theme */
 }
 
+/* Button styling for download and share buttons */
 .mp3-list li .download-button,
 .mp3-list li .share-button {
-  min-width: 40px;
-  font-size: 14px;
-  font-weight: 500;
-  padding: 5px 10px;
-  border: none;
-  text-decoration: none;
+  min-width: 30px; /* Reduced minimum width */
+  font-size: inherit; /* Inherit font size from the theme */
+  font-weight: 500; /* Font weight */
+  padding: 3px 6px; /* Adjusted padding for a better appearance */
+  border: 2px solid transparent; /* Set a transparent border for hover transition */
   border-radius: 4px;
   cursor: pointer;
-  transition: opacity 0.3s ease;
-  min-width: 40px; /* Minimum width to prevent shrinking */
+  transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transitions for background and border */
   text-align: center; /* Center the content inside the button */
   flex-shrink: 0; /* Prevents buttons from shrinking */
+  background-color: #e0e0e0; /* Light background for normal state */
+  color: #333; /* Button text color */
 }
 
 .mp3-list li .download-button:hover,
 .mp3-list li .share-button:hover {
-  opacity: 0.8; /* Visual feedback on hover */
-  min-width: 40px;
+  background-color: #e7827d; /* Change background on hover */
+  border-color: #d26969; /* Add a contrasting border color on hover */
+  opacity: 0.9; /* Slightly increase opacity for visual feedback */
 }
 
 .share-button-wrapper {
@@ -59,7 +60,7 @@
   display: none;
   position: absolute;
   top: 100%; /* Directly below the button */
-  left: 0;
+  right: 0;
   background-color: #fff;
   border: 1px solid #ddd;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -75,12 +76,12 @@
 }
 
 .share-dropdown a {
-  width: 100% !important;
+  width: 100%;
   display: flex;
   align-items: center;
   color: #333;
   padding: 8px 10px;
-  font-size: 14px;
+  /* Removed font-size to inherit from theme */
   font-weight: 500;
   text-decoration: none;
   border-radius: 4px;
@@ -89,7 +90,6 @@
 
 .share-dropdown a:hover {
   background-color: #e7827d; /* Background color on hover */
-  width: 100% !important;
 }
 
 .share-dropdown img {
@@ -102,36 +102,31 @@
   content: "";
   position: absolute;
   top: -10px;
-  left: 10%;
+  left: 75%;
   border-width: 0 10px 10px;
   border-style: solid;
   border-color: transparent transparent #ddd transparent;
 }
 
-/* ---------- */
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+  /* Ensure the items stay in a row */
+  .mp3-item {
+    flex-direction: row; /* Keep items in a row */
+    justify-content: space-between; /* Space between title and buttons */
+    align-items: center; /* Center items vertically */
+    width: 100%;
+  }
 
-/* Styling for download and share buttons */
-.mp3-list li a,
-.mp3-list li button {
-  border: none;
-  text-decoration: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-}
+  /* Adjust button size for mobile */
+  .mp3-list li .download-button,
+  .mp3-list li .share-button {
+    padding: 3px 6px; /* Adjusted padding for consistency */
+    white-space: nowrap; /* Prevent text from wrapping */
+  }
 
-.share-button i {
-  margin-right: 5px; /* Adds space between the icon and the button text */
-}
-
-.download-button i,
-.share-button i {
-  font-size: 14px;
-}
-
-.share-button {
-  height: 100% !important;
-  text-align: center !important;
+  /* Adjust share dropdown for mobile */
+  .share-dropdown {
+    max-width: 90vw; /* Prevent the dropdown from being too wide */
+  }
 }
