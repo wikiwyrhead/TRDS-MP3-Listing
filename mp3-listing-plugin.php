@@ -351,8 +351,8 @@ function mp3_listing_shortcode()
             $post_url = get_permalink(); // Get the post URL for sharing
 
             // Encode the post title and URL for use in URLs
-            $encoded_title = urlencode($post_title);
-            $encoded_url = urlencode($post_url);
+            // $encoded_title = urlencode($post_title); //fixed by client
+            $encoded_url = urlencode($mp3_url);
 
             // Create share URLs for social media platforms
             $facebook_share_url = 'https://www.facebook.com/sharer/sharer.php?u=' . $encoded_url;
