@@ -1,15 +1,14 @@
 <?php
 
 /**
- * Plugin Name: MP3 Listing Plugin
- * Plugin URI: https://example.com/mp3-listing-plugin
- * Description: A plugin to list and play MP3 files with download and share functionality
+ * Plugin Name: TRDS MP3 Listing
+ * Plugin URI: https://github.com/wikiwyrhead/TRDS-MP3-Listing/
+ * Description: A simple plugin to upload, manage, and list MP3 files with download and social media share buttons. Includes a backend for uploading MP3s and a shortcode to display the audio listing on the frontend. Allows customization of button and title colors via a settings submenu under MP3 Files.
  * Version: 1.2.0
- * Author: WikiWyrhead
- * Author URI: https://example.com
- * License: GPL v2 or later
- * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain: mp3-listing-plugin
+ * Author: Arnel Go
+ * Author URI: https://arnelgo.info/
+ * License: GPLv2 or later
+ * Text Domain: trds-mp3-listing
  */
 
 // Exit if accessed directly
