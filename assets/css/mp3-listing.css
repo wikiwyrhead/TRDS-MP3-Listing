@@ -1,0 +1,61 @@
+/* MP3 Listing Frontend Styles */
+
+/* Title styles */
+.mp3-title {
+    transition: color 0.3s ease;
+}
+.mp3-title:hover {
+    color: var(--mp3-title-hover-color, #135e96);
+}
+
+/* Button styles */
+.download-button,
+.share-button {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.download-button:hover {
+    background-color: var(--mp3-download-button-hover-color, #135e96) !important;
+    transform: translateY(-1px);
+}
+
+.share-button:hover {
+    background-color: var(--mp3-share-button-hover-color, #c82333) !important;
+    transform: translateY(-1px);
+}
+
+/* Audio player styles */
+audio.mp3-audio {
+    border-radius: 25px;
+}
+
+audio.mp3-audio::-webkit-media-controls-panel {
+    background-color: var(--mp3-audio-player-color, #2271b1);
+}
+
+audio.mp3-audio::-webkit-media-controls-current-time-display,
+audio.mp3-audio::-webkit-media-controls-time-remaining-display {
+    color: var(--mp3-button-text-color, #ffffff);
+}
+
+audio.mp3-audio::-webkit-media-controls-play-button,
+audio.mp3-audio::-webkit-media-controls-mute-button {
+    background-color: var(--mp3-button-text-color, #ffffff);
+    border-radius: 50%;
+}
+
+/* Add smooth transitions */
+.mp3-item {
+    transition: transform 0.2s ease;
+}
+
+.mp3-item:hover {
+    transform: translateY(-2px);
+}
+
+/* Improve button accessibility */
+.download-button:focus,
+.share-button:focus {
+    outline: 2px solid var(--mp3-audio-player-color, #2271b1);
+    outline-offset: 2px;
+}

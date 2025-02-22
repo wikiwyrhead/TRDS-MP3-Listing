@@ -1,48 +1,134 @@
-# TRDS MP3 Listing
+# MP3 Listing Plugin
 
-![Plugin Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
-![GPLv2 License](https://img.shields.io/badge/license-GPLv2-blue.svg)
-
-## Description
-
-The TRDS MP3 Listing is a WordPress plugin that allows you to create and manage a listing of MP3 audio files on your website. This plugin simplifies the process of showcasing audio content, providing users with easy access to download and share MP3 files via social media.
+A WordPress plugin for listing and playing MP3 files with download and share functionality. This plugin provides an elegant way to showcase your audio content with a modern, customizable interface.
 
 ## Features
 
-- **Custom Post Type:** Easily create and manage MP3 audio files.
-- **Shortcode Support:** Use `[trds_mp3_listing]` to display the MP3 listing on any page or post.
-- **Download Buttons:** Users can download MP3 files directly from the listing.
-- **Social Media Share Buttons:** Share MP3 files on popular social media platforms.
-- **Customizable Display:** Style the MP3 listing to match your website's theme.
+- Responsive HTML5 audio player
+- Direct download functionality with click tracking
+- Social media sharing (Facebook, Twitter, WhatsApp)
+- Play count tracking
+- Load more functionality for paginated display
+- Customizable color scheme
+- Mobile-friendly interface
 
 ## Installation
 
-1. **Download the Plugin:**
-
-   - Clone or download the repository from GitHub.
-
-2. **Upload the Plugin to WordPress:**
-
-   - Navigate to `Plugins > Add New` in your WordPress dashboard.
-   - Click `Upload Plugin` and select the downloaded ZIP file.
-   - Install and activate the plugin.
-
-3. **Configure the Plugin:**
-   - Use the shortcode `[trds_mp3_listing]` to display the MP3 listing on any page or post.
+1. Download the plugin zip file
+2. Upload to your WordPress site through the Plugins menu
+3. Activate the plugin
+4. Go to "MP3 Files" in your WordPress admin menu
+5. Start uploading MP3 files and customize the appearance
 
 ## Usage
 
-- **Creating MP3 Entries:** After activation, go to the 'MP3s' menu in the WordPress admin panel to add new MP3 audio files.
-- **Displaying the Listing:** Insert the `[trds_mp3_listing]` shortcode into your desired page or post to render the MP3 listing.
+### Basic Shortcode
+Add the MP3 listing to any page or post using the shortcode:
+```
+[mp3_listing]
+```
+
+### Customization
+Navigate to MP3 Files > Settings to customize:
+- Download button color
+- Share button color
+- MP3 title color
+- Audio player color
 
 ## Changelog
 
-### Version 1.0.0
+### Version 1.2.0 (2025-02-23)
+#### Added
+- Color customization settings for UI elements
+- Improved settings page with color pickers
+- Enhanced mobile responsiveness
+- Better error handling for file operations
 
-- Initial release of the TRDS MP3 Listing plugin with features for creating and displaying MP3 audio files.
-- Shortcode functionality for rendering the MP3 listing on the frontend.
-- Download and share buttons included for each MP3 entry.
+#### Changed
+- Simplified color settings interface
+- Improved button styling consistency
+- Enhanced audio player appearance
+- Updated social sharing implementation
+
+#### Fixed
+- Color picker functionality
+- Mobile layout issues
+- Share button positioning
+- Audio player controls styling
+
+### Version 1.1.0 (2025-02-15)
+#### Added
+- Social media sharing functionality
+- Play count tracking system
+- Load more feature for pagination
+- Mobile-responsive design improvements
+
+### Version 1.0.0 (2025-02-01)
+#### Added
+- Basic MP3 file management system
+- Custom post type for MP3 files
+- Frontend display with [mp3_listing] shortcode
+- HTML5 audio player integration
+- Basic download functionality
+- Simple admin interface for MP3 uploads
+- Basic styling for the frontend display
+- File size display and format validation
+- Security measures for file downloads
+- Basic error handling
+
+#### Core Features
+- MP3 file upload and management
+- Audio playback functionality
+- Download tracking system
+- Basic admin settings page
+- Frontend shortcode integration
+- File type validation
+- Secure file handling
+
+#### Technical Implementation
+- Custom post type registration
+- File upload handling
+- Download functionality with security checks
+- Basic CSS styling
+- WordPress admin integration
+- Error logging system
+- File size calculations
+- MIME type validation
+
+## Improvements from Original Plugin
+
+### User Interface
+- Added modern color picker interface
+- Customizable color options for better branding
+- Enhanced mobile responsiveness
+- Added load more functionality
+
+### Features
+- Added play count tracking
+- Enhanced social sharing capabilities
+- Improved audio player styling
+- Better performance with optimized code
+
+### Code Quality
+- Improved security with proper nonce verification
+- Better code organization
+- Optimized asset loading
+- Fixed various bugs and issues
+
+## Requirements
+
+- WordPress 5.0 or higher
+- PHP 7.2 or higher
+- Modern web browser with HTML5 audio support
+
+## Support
+
+For support, feature requests, or bug reports, please use the GitHub issues page.
 
 ## License
 
-This plugin is licensed under the GPLv2 or later license. See the [LICENSE](LICENSE) file for details.
+This plugin is licensed under the GPL v2 or later.
+
+## Credits
+
+Originally forked from TRDS MP3 Listing by Arnel Go. Enhanced and maintained by WikiWyrhead.
