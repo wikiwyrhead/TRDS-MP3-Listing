@@ -1,0 +1,235 @@
+/* Admin Playlist Management */
+.mp3-playlists-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.mp3-playlist-section {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.playlist-title {
+    font-size: 1.2em;
+    color: #23282d;
+    margin: 0 0 15px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e5e5e5;
+}
+
+.track-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+}
+
+.track-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    background: #f9f9f9;
+    border-bottom: 1px solid #e5e5e5;
+    transition: background-color 0.2s;
+}
+
+.track-item:last-child {
+    border-bottom: none;
+}
+
+.track-item:hover {
+    background: #f0f0f0;
+}
+
+.track-handle {
+    cursor: move;
+    padding: 0 8px;
+    color: #999;
+}
+
+.track-info {
+    flex: 1;
+    margin: 0 10px;
+}
+
+.track-title {
+    font-size: 13px;
+    color: #444;
+}
+
+.track-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.remove-track {
+    background: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s;
+}
+
+.remove-track:hover {
+    background: #c82333;
+}
+
+.load-more-container {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.load-more-button {
+    background: #2271b1;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background-color 0.2s;
+}
+
+.load-more-button:hover {
+    background: #135e96;
+}
+
+.load-more-button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1200px) {
+    .mp3-playlists-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Scrollbar Styling */
+.track-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.track-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.track-list::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.track-list::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Empty State */
+.no-tracks {
+    padding: 20px;
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    background: #f9f9f9;
+    border-radius: 4px;
+    margin: 0;
+}
+
+/* Sortable styles */
+.ui-sortable-helper {
+    background: #fff !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.ui-sortable-placeholder {
+    visibility: visible !important;
+    background: #f0f0f0;
+    border: 2px dashed #ccc;
+}
+
+@keyframes button-loading-spinner {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.load-more-button.is-loading {
+    padding-right: 40px;
+}
+
+.load-more-button.is-loading::after {
+    content: '';
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    width: 16px;
+    height: 16px;
+    margin-top: -8px;
+    border: 2px solid #fff;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: button-loading-spinner 0.75s linear infinite;
+}
+
+/* Settings Page Styles */
+.mp3-color-picker {
+    width: 65px;
+    height: 30px;
+    padding: 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.mp3-color-picker:hover {
+    border-color: #999;
+}
+
+.mp3-color-picker:focus {
+    border-color: #2271b1;
+    box-shadow: 0 0 0 1px #2271b1;
+    outline: none;
+}
+
+/* Form layout improvements */
+.form-table th {
+    padding: 20px 10px 20px 0;
+    width: 200px;
+}
+
+.form-table td {
+    padding: 15px 10px;
+    vertical-align: middle;
+}
+
+input[type="number"] {
+    width: 70px;
+}
+
+/* Settings section description */
+.mp3_listing_style_section p {
+    color: #646970;
+    font-style: italic;
+    margin-bottom: 20px;
+}
