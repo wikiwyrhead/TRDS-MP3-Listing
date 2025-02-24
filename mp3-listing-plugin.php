@@ -892,3 +892,4 @@ function mp3_load_more_tracks() {
     }
 }
 add_action('wp_ajax_mp3_load_more_tracks', 'mp3_load_more_tracks');
+add_action('wp_ajax_nopriv_mp3_load_more_tracks', 'mp3_load_more_tracks');
