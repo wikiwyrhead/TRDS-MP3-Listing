@@ -622,6 +622,7 @@ add_action('admin_init', 'mp3_listing_register_settings');
 function mp3_listing_shortcode($atts) {
     $atts = shortcode_atts(array(
         'posts_per_page' => 10,
+        'playlist' => '', // Add playlist parameter
     ), $atts);
 
     $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
@@ -633,6 +634,17 @@ function mp3_listing_shortcode($atts) {
         'orderby' => 'date',
         'order' => 'DESC'
     );
+
+    // Add taxonomy query if playlist is specified
+    if (!empty($atts['playlist'])) {
+        $args['tax_query'] = array(
+            array(
+                'taxonomy' => 'mp3_playlist',
+                'field' => 'slug',
+                'terms' => $atts['playlist']
+            )
+        );
+    }
 
     $query = new WP_Query($args);
 
@@ -720,7 +732,13 @@ function mp3_listing_shortcode($atts) {
     // Add load more button if there are more posts
     if ($query->max_num_pages > 1) {
         $output .= '<div class="load-more-container">
-            <button class="load-more-button" data-page="2" data-nonce="' . wp_create_nonce('mp3_load_more_nonce') . '">' . ucwords(__('Load More', 'mp3-listing-plugin')) . '</button>
+            <button class="load-more-button" 
+                data-page="2" 
+                data-nonce="' . wp_create_nonce('mp3_load_more_nonce') . '"
+                data-posts-per-page="' . esc_attr($atts['posts_per_page']) . '"
+                data-playlist="' . esc_attr($atts['playlist']) . '">
+                Load More
+            </button>
         </div>';
     }
 
@@ -744,11 +762,6 @@ function mp3_load_more_tracks() {
     $is_admin = isset($_POST['is_admin']) && $_POST['is_admin'] === 'true';
 
     if ($is_admin) {
-        // Verify admin capabilities
-        if (!current_user_can('manage_options')) {
-            wp_send_json_error('Insufficient permissions');
-        }
-
         // Backend playlist management
         $playlist_id = isset($_POST['playlist_id']) ? absint($_POST['playlist_id']) : 0;
         $page = isset($_POST['page']) ? absint($_POST['page']) : 1;
@@ -801,6 +814,7 @@ function mp3_load_more_tracks() {
         // Frontend load more
         $page = isset($_POST['page']) ? intval($_POST['page']) : 1;
         $posts_per_page = isset($_POST['posts_per_page']) ? intval($_POST['posts_per_page']) : 10;
+        $playlist = isset($_POST['playlist']) ? sanitize_text_field($_POST['playlist']) : '';
 
         $args = array(
             'post_type' => 'mp3_listing',
@@ -809,6 +823,17 @@ function mp3_load_more_tracks() {
             'orderby' => 'date',
             'order' => 'DESC'
         );
+
+        // Add taxonomy query if playlist is specified
+        if (!empty($playlist)) {
+            $args['tax_query'] = array(
+                array(
+                    'taxonomy' => 'mp3_playlist',
+                    'field' => 'slug',
+                    'terms' => $playlist
+                )
+            );
+        }
 
         $query = new WP_Query($args);
         ob_start();
