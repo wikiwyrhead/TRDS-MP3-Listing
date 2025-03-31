@@ -4,7 +4,7 @@
  * Plugin Name: TRDS MP3 Listing
  * Plugin URI: https://github.com/wikiwyrhead/TRDS-MP3-Listing/
  * Description: A simple plugin to upload, manage, and list MP3 files with download and social media share buttons. Includes a backend for uploading MP3s and a shortcode to display the audio listing on the frontend. Allows customization of button and title colors via a settings submenu under MP3 Files.
- * Version: 1.2.0
+ * Version: 1.2.1
  * Author: Arnel Go
  * Author URI: https://arnelgo.info/
  * License: GPLv2 or later
@@ -17,7 +17,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Plugin version
-define('TRDS_MP3_PLUGIN_VERSION', '1.2.0');
+define('TRDS_MP3_PLUGIN_VERSION', '1.2.1');
 
 function force_download_mp3()
 {
@@ -113,7 +113,8 @@ add_action('init', 'mp3_listing_post_type');
 /**
  * Register Playlist Taxonomy
  */
-function mp3_listing_register_playlist_taxonomy() {
+function mp3_listing_register_playlist_taxonomy()
+{
     $labels = array(
         'name'              => __('Playlists', 'mp3-listing-plugin'),
         'singular_name'     => __('Playlist', 'mp3-listing-plugin'),
@@ -144,7 +145,8 @@ add_action('init', 'mp3_listing_register_playlist_taxonomy');
 /**
  * Add Playlist Management Page
  */
-function mp3_listing_add_playlist_management_page() {
+function mp3_listing_add_playlist_management_page()
+{
     add_submenu_page(
         'edit.php?post_type=mp3_listing', // Parent slug
         __('Manage Playlists', 'mp3-listing-plugin'), // Page title
@@ -159,7 +161,8 @@ add_action('admin_menu', 'mp3_listing_add_playlist_management_page');
 /**
  * Render Playlist Management Page
  */
-function mp3_listing_render_playlist_management_page() {
+function mp3_listing_render_playlist_management_page()
+{
     if (!current_user_can('manage_options')) {
         return;
     }
@@ -227,9 +230,9 @@ function mp3_listing_render_playlist_management_page() {
                 echo '<button class="load-more-button" 
                              data-playlist-id="' . esc_attr($playlist->term_id) . '" 
                              data-page="2"
-                             data-nonce="' . wp_create_nonce('mp3_load_more_nonce') . '">' . 
-                     __('Load More', 'mp3-listing-plugin') . 
-                     '</button>';
+                             data-nonce="' . wp_create_nonce('mp3_load_more_nonce') . '">' .
+                    __('Load More', 'mp3-listing-plugin') .
+                    '</button>';
                 echo '</div>';
             }
         }
@@ -243,7 +246,8 @@ function mp3_listing_render_playlist_management_page() {
 /**
  * Update Track Order via AJAX
  */
-function mp3_update_track_order() {
+function mp3_update_track_order()
+{
     if (!isset($_POST['playlist_id']) || !isset($_POST['track_order'])) {
         wp_send_json_error('Invalid request.');
     }
@@ -324,13 +328,13 @@ function save_mp3_file($post_id)
     // Sanitize and save the MP3 URL.
     if (isset($_POST['mp3_url'])) {
         $mp3_url = esc_url_raw($_POST['mp3_url']);
-        
+
         // Verify file type
         $file_type = wp_check_filetype(basename($mp3_url), array('mp3' => 'audio/mpeg'));
         if ($file_type['ext'] !== 'mp3') {
             return;
         }
-        
+
         update_post_meta($post_id, '_mp3_url', $mp3_url);
     }
 }
@@ -339,7 +343,8 @@ add_action('save_post', 'save_mp3_file');
 /**
  * Enqueue frontend scripts and styles
  */
-function mp3_frontend_scripts() {
+function mp3_frontend_scripts()
+{
     // Original frontend styles and scripts
     wp_enqueue_script('mp3-upload', plugin_dir_url(__FILE__) . 'assets/js/mp3-upload.js', array('jquery'), '1.0', true);
     wp_enqueue_style('mp3-listing-style', plugin_dir_url(__FILE__) . 'assets/css/mp3-style.css', array(), '1.0');
@@ -397,7 +402,8 @@ add_action('wp_enqueue_scripts', 'mp3_frontend_scripts');
 /**
  * Enqueue admin scripts and styles
  */
-function mp3_admin_scripts($hook) {
+function mp3_admin_scripts($hook)
+{
     $post_type = get_post_type();
 
     // Enqueue scripts for the MP3 listing post type
@@ -478,7 +484,8 @@ add_action('admin_enqueue_scripts', 'mp3_admin_scripts');
 /**
  * Add wrapper class to the plugin output
  */
-function mp3_listing_wrapper_start() {
+function mp3_listing_wrapper_start()
+{
     echo '<div class="mp3-listing-plugin">';
 }
 add_action('mp3_listing_before_content', 'mp3_listing_wrapper_start');
@@ -486,7 +493,8 @@ add_action('mp3_listing_before_content', 'mp3_listing_wrapper_start');
 /**
  * Close wrapper class
  */
-function mp3_listing_wrapper_end() {
+function mp3_listing_wrapper_end()
+{
     echo '</div>';
 }
 add_action('mp3_listing_after_content', 'mp3_listing_wrapper_end');
@@ -494,7 +502,8 @@ add_action('mp3_listing_after_content', 'mp3_listing_wrapper_end');
 /**
  * Add admin wrapper class
  */
-function mp3_admin_wrapper_start() {
+function mp3_admin_wrapper_start()
+{
     echo '<div class="mp3-listing-plugin-admin">';
 }
 add_action('mp3_admin_before_content', 'mp3_admin_wrapper_start');
@@ -502,7 +511,8 @@ add_action('mp3_admin_before_content', 'mp3_admin_wrapper_start');
 /**
  * Close admin wrapper class
  */
-function mp3_admin_wrapper_end() {
+function mp3_admin_wrapper_end()
+{
     echo '</div>';
 }
 add_action('mp3_admin_after_content', 'mp3_admin_wrapper_end');
@@ -526,8 +536,9 @@ add_action('admin_menu', 'mp3_listing_add_settings_submenu');
 /**
  * Render Settings Submenu Page
  */
-function mp3_listing_render_settings_page() {
-    ?>
+function mp3_listing_render_settings_page()
+{
+?>
     <div class="wrap">
         <h1><?php _e('MP3 Listing Settings', 'mp3-listing-plugin'); ?></h1>
         <form method="post" action="options.php">
@@ -538,13 +549,14 @@ function mp3_listing_render_settings_page() {
             ?>
         </form>
     </div>
-    <?php
+<?php
 }
 
 /**
  * Register and Define Settings
  */
-function mp3_listing_register_settings() {
+function mp3_listing_register_settings()
+{
     // Register settings with sanitization
     register_setting('mp3_listing_settings', 'mp3_download_button_color', 'sanitize_hex_color');
     register_setting('mp3_listing_settings', 'mp3_share_button_color', 'sanitize_hex_color');
@@ -590,27 +602,32 @@ function mp3_listing_register_settings() {
     }
 }
 
-function mp3_listing_settings_section_callback() {
+function mp3_listing_settings_section_callback()
+{
     echo '<p>' . __('Customize the colors and appearance of the MP3 player interface.', 'mp3-listing-plugin') . '</p>';
 }
 
 // Color picker callbacks with default values
-function mp3_download_button_color_callback() {
+function mp3_download_button_color_callback()
+{
     $color = get_option('mp3_download_button_color', '#436aa3');
     echo '<input type="color" id="mp3_download_button_color" name="mp3_download_button_color" value="' . esc_attr($color) . '" class="mp3-color-picker" />';
 }
 
-function mp3_share_button_color_callback() {
+function mp3_share_button_color_callback()
+{
     $color = get_option('mp3_share_button_color', '#87a9d8');
     echo '<input type="color" id="mp3_share_button_color" name="mp3_share_button_color" value="' . esc_attr($color) . '" class="mp3-color-picker" />';
 }
 
-function mp3_title_color_callback() {
+function mp3_title_color_callback()
+{
     $color = get_option('mp3_title_color', '#333333');
     echo '<input type="color" id="mp3_title_color" name="mp3_title_color" value="' . esc_attr($color) . '" class="mp3-color-picker" />';
 }
 
-function mp3_audio_player_color_callback() {
+function mp3_audio_player_color_callback()
+{
     $color = get_option('mp3_audio_player_color', '#2271b1');
     echo '<input type="color" id="mp3_audio_player_color" name="mp3_audio_player_color" value="' . esc_attr($color) . '" class="mp3-color-picker" />';
 }
@@ -619,9 +636,11 @@ add_action('admin_init', 'mp3_listing_register_settings');
 /**
  * Shortcode to render the MP3 listing on the frontend
  */
-function mp3_listing_shortcode($atts) {
+function mp3_listing_shortcode($atts)
+{
     $atts = shortcode_atts(array(
         'posts_per_page' => 10,
+        'playlist' => '', // Add playlist parameter
     ), $atts);
 
     $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
@@ -633,6 +652,17 @@ function mp3_listing_shortcode($atts) {
         'orderby' => 'date',
         'order' => 'DESC'
     );
+
+    // Add taxonomy query if playlist is specified
+    if (!empty($atts['playlist'])) {
+        $args['tax_query'] = array(
+            array(
+                'taxonomy' => 'mp3_playlist',
+                'field' => 'slug',
+                'terms' => $atts['playlist']
+            )
+        );
+    }
 
     $query = new WP_Query($args);
 
@@ -720,7 +750,13 @@ function mp3_listing_shortcode($atts) {
     // Add load more button if there are more posts
     if ($query->max_num_pages > 1) {
         $output .= '<div class="load-more-container">
-            <button class="load-more-button" data-page="2" data-nonce="' . wp_create_nonce('mp3_load_more_nonce') . '">' . ucwords(__('Load More', 'mp3-listing-plugin')) . '</button>
+            <button class="load-more-button" 
+                data-page="2" 
+                data-nonce="' . wp_create_nonce('mp3_load_more_nonce') . '"
+                data-posts-per-page="' . esc_attr($atts['posts_per_page']) . '"
+                data-playlist="' . esc_attr($atts['playlist']) . '">
+                Load More
+            </button>
         </div>';
     }
 
@@ -734,7 +770,8 @@ add_shortcode('mp3_listing', 'mp3_listing_shortcode');
 /**
  * AJAX handler for loading more tracks
  */
-function mp3_load_more_tracks() {
+function mp3_load_more_tracks()
+{
     // Verify nonce
     if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'mp3_load_more_nonce')) {
         wp_send_json_error('Invalid nonce');
@@ -744,11 +781,6 @@ function mp3_load_more_tracks() {
     $is_admin = isset($_POST['is_admin']) && $_POST['is_admin'] === 'true';
 
     if ($is_admin) {
-        // Verify admin capabilities
-        if (!current_user_can('manage_options')) {
-            wp_send_json_error('Insufficient permissions');
-        }
-
         // Backend playlist management
         $playlist_id = isset($_POST['playlist_id']) ? absint($_POST['playlist_id']) : 0;
         $page = isset($_POST['page']) ? absint($_POST['page']) : 1;
@@ -780,7 +812,7 @@ function mp3_load_more_tracks() {
                 $query->the_post();
                 $mp3_id = get_the_ID();
                 $post_title = get_the_title();
-                
+
                 echo '<li class="track-item" data-track-id="' . esc_attr($mp3_id) . '">
                     <div class="track-handle">☰</div>
                     <div class="track-info">
@@ -796,11 +828,11 @@ function mp3_load_more_tracks() {
         wp_reset_postdata();
         $output = ob_get_clean();
         wp_send_json_success($output);
-
     } else {
         // Frontend load more
         $page = isset($_POST['page']) ? intval($_POST['page']) : 1;
         $posts_per_page = isset($_POST['posts_per_page']) ? intval($_POST['posts_per_page']) : 10;
+        $playlist = isset($_POST['playlist']) ? sanitize_text_field($_POST['playlist']) : '';
 
         $args = array(
             'post_type' => 'mp3_listing',
@@ -809,6 +841,17 @@ function mp3_load_more_tracks() {
             'orderby' => 'date',
             'order' => 'DESC'
         );
+
+        // Add taxonomy query if playlist is specified
+        if (!empty($playlist)) {
+            $args['tax_query'] = array(
+                array(
+                    'taxonomy' => 'mp3_playlist',
+                    'field' => 'slug',
+                    'terms' => $playlist
+                )
+            );
+        }
 
         $query = new WP_Query($args);
         ob_start();

@@ -3,7 +3,7 @@ Contributors: wikiwyrhead
 Tags: mp3, audio, music, player, download
 Requires at least: 5.0
 Tested up to: 6.4
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -40,6 +40,13 @@ Yes, you can customize colors for:
 
 == Changelog ==
 
+= 1.2.1 =
+* Enhanced audio player styling with consistent color scheme
+* Improved button colors and hover states
+* Optimized CSS structure and removed redundant files
+* Better visual consistency across all UI elements
+* Consolidated styles for better maintainability
+
 = 1.2.0 =
 * Added customizable color settings for player interface
 * Improved settings page organization
@@ -68,6 +75,9 @@ Yes, you can customize colors for:
   - WordPress admin integration
 
 == Upgrade Notice ==
+
+= 1.2.1 =
+This version improves the visual consistency of the plugin with enhanced color schemes and optimized styling. Update for a better user experience.
 
 = 1.2.0 =
 This version adds customizable color settings and improves the overall user interface. Update to get access to the new styling options.

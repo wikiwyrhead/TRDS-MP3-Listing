@@ -23,13 +23,17 @@ A WordPress plugin for listing and playing MP3 files with download and share fun
 ## Usage
 
 ### Basic Shortcode
+
 Add the MP3 listing to any page or post using the shortcode:
+
 ```
 [mp3_listing]
 ```
 
 ### Customization
+
 Navigate to MP3 Files > Settings to customize:
+
 - Download button color
 - Share button color
 - MP3 title color
@@ -37,34 +41,52 @@ Navigate to MP3 Files > Settings to customize:
 
 ## Changelog
 
+### Version 1.2.1 (2024-03-31)
+
+#### Changed
+
+- Updated audio player color scheme to match the overall design
+- Refined button colors for better visual consistency
+- Improved audio player controls visibility
+- Optimized CSS structure by removing redundant files
+- Consolidated styling into a single, maintainable file
+
 ### Version 1.2.0 (2025-02-23)
+
 #### Added
+
 - Color customization settings for UI elements
 - Improved settings page with color pickers
 - Enhanced mobile responsiveness
 - Better error handling for file operations
 
 #### Changed
+
 - Simplified color settings interface
 - Improved button styling consistency
 - Enhanced audio player appearance
 - Updated social sharing implementation
 
 #### Fixed
+
 - Color picker functionality
 - Mobile layout issues
 - Share button positioning
 - Audio player controls styling
 
 ### Version 1.1.0 (2025-02-15)
+
 #### Added
+
 - Social media sharing functionality
 - Play count tracking system
 - Load more feature for pagination
 - Mobile-responsive design improvements
 
 ### Version 1.0.0 (2025-02-01)
+
 #### Added
+
 - Basic MP3 file management system
 - Custom post type for MP3 files
 - Frontend display with [mp3_listing] shortcode
@@ -77,6 +99,7 @@ Navigate to MP3 Files > Settings to customize:
 - Basic error handling
 
 #### Core Features
+
 - MP3 file upload and management
 - Audio playback functionality
 - Download tracking system
@@ -86,6 +109,7 @@ Navigate to MP3 Files > Settings to customize:
 - Secure file handling
 
 #### Technical Implementation
+
 - Custom post type registration
 - File upload handling
 - Download functionality with security checks
@@ -98,18 +122,21 @@ Navigate to MP3 Files > Settings to customize:
 ## Improvements from Original Plugin
 
 ### User Interface
+
 - Added modern color picker interface
 - Customizable color options for better branding
 - Enhanced mobile responsiveness
 - Added load more functionality
 
 ### Features
+
 - Added play count tracking
 - Enhanced social sharing capabilities
 - Improved audio player styling
 - Better performance with optimized code
 
 ### Code Quality
+
 - Improved security with proper nonce verification
 - Better code organization
 - Optimized asset loading
