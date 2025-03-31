@@ -1,11 +1,17 @@
 /* Root variables for colors and consistent styling */
 :root {
-  --mp3-primary: var(--primary-color, #e7827d);
+  --mp3-primary: var(--primary-color, #e17d77);
   --mp3-secondary: var(--secondary-color, #ddd);
   --mp3-text: var(--text-color, inherit);
-  --mp3-button-bg: var(--button-bg, #e0e0e0);
+  --mp3-button-bg: var(--button-bg, #9e9797);
   --mp3-font-family: inherit;
   --mp3-line-height: inherit;
+  --mp3-title-hover-color: #135e96;
+  --mp3-download-button-hover-color: #1a1a1a;
+  --mp3-share-button-hover-color: #c9362e;
+  --mp3-load-more-button-hover-color: #c9362e;
+  --mp3-audio-player-color: #e1e1e1;
+  --mp3-button-text-color: #ffffff;
 }
 
 /* Import Google Font (Poppins) */
@@ -31,7 +37,7 @@ body {
 /* MP3 Listing Container */
 .mp3-listing-container {
   width: 100%;
-  max-width: 100%; 
+  max-width: 100%;
   margin: 0 auto;
   padding: 0;
   font-family: var(--mp3-font-family, "Poppins", sans-serif);
@@ -42,7 +48,7 @@ body {
 
 /* MP3 List Styling */
 .mp3-list {
-  list-style: none; 
+  list-style: none;
   padding-left: 0;
   margin: 0;
 }
@@ -56,7 +62,7 @@ body {
 }
 
 .mp3-list li::before {
-  content: "•"; 
+  content: "•";
   font-size: 2rem;
   color: var(--mp3-primary);
   position: absolute;
@@ -80,6 +86,7 @@ body {
   padding: 0 5px;
 }
 
+/* MP3 Title Styling */
 .mp3-title {
   font-size: 14px;
   font-weight: 500;
@@ -88,6 +95,11 @@ body {
   overflow-wrap: anywhere;
   flex: 1;
   line-height: 1.4;
+  transition: color 0.3s ease;
+}
+
+.mp3-title:hover {
+  color: var(--mp3-title-hover-color);
 }
 
 .mp3-actions {
@@ -102,13 +114,19 @@ body {
 .mp3-audio {
   width: 9.375rem;
   height: 2rem;
-  border-radius: 5px;
-  background-color: var(--mp3-button-bg);
+  border-radius: 25px;
+  background-color: var(--mp3-audio-player-color);
 }
 
 /* Ensure the audio player controls are visible */
 .mp3-audio::-webkit-media-controls-panel {
-  background-color: var(--mp3-button-bg);
+  background-color: var(--mp3-audio-player-color);
+}
+
+.mp3-audio::-webkit-media-controls-current-time-display,
+.mp3-audio::-webkit-media-controls-time-remaining-display,
+.mp3-audio::-webkit-media-controls-timeline {
+  color: #666;
 }
 
 .mp3-audio::-webkit-media-controls-play-button,
@@ -138,15 +156,20 @@ body {
   transition: all 0.3s ease;
 }
 
-.mp3-list li .download-button:hover,
-.mp3-list li .share-button:hover {
-  opacity: 0.9;
+.mp3-list li .download-button:hover {
+  background-color: var(--mp3-download-button-hover-color) !important;
   transform: translateY(-2px);
 }
 
-.mp3-list li .download-button:active,
-.mp3-list li .share-button:active {
-  transform: translateY(0);
+.mp3-list li .share-button:hover {
+  background-color: var(--mp3-share-button-hover-color) !important;
+  transform: translateY(-2px);
+}
+
+.mp3-list li .download-button:focus,
+.mp3-list li .share-button:focus {
+  outline: 2px solid var(--mp3-audio-player-color);
+  outline-offset: 2px;
 }
 
 /* Share Button Wrapper */
@@ -203,15 +226,15 @@ body {
 /* View Count Styling */
 .view-count {
   margin-left: 0.1rem;
-  font-size: 0.9rem; 
+  font-size: 0.9rem;
   font-weight: 600;
   color: var(--text-color);
-  flex-shrink: 0; 
+  flex-shrink: 0;
   display: inline-flex;
   align-items: center;
-  gap: 5px; 
+  gap: 5px;
   min-width: 60px;
-  justify-content: flex-start; 
+  justify-content: flex-start;
 }
 
 /* Ensure the icon and number are aligned properly */
@@ -221,7 +244,7 @@ body {
 
 /* Load More Button Styling */
 .load-more-container {
-  text-align: center; 
+  text-align: center;
   margin-top: 1.5rem;
 }
 
@@ -245,7 +268,7 @@ body {
 }
 
 .load-more-button:hover {
-  background-color: #d16963;  
+  background-color: var(--mp3-load-more-button-hover-color) !important;
   transform: translateY(-2px);
   color: #fff;
 }
@@ -264,7 +287,7 @@ body {
 }
 
 .load-more-button.is-loading::after {
-  content: '';
+  content: "";
   position: absolute;
   right: 10px;
   top: 50%;
@@ -288,6 +311,11 @@ body {
 
 /* Mobile Responsive Styles */
 @media (max-width: 768px) {
+  .mp3-list li {
+    padding: 0;
+    padding-left: 0;
+  }
+
   .mp3-list li::before {
     content: none;
   }
@@ -296,7 +324,7 @@ body {
     flex-direction: column;
     align-items: stretch;
     gap: 10px;
-    padding: 10px;
+    padding: 10px 0;
   }
 
   .mp3-title {

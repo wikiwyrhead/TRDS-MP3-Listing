@@ -74,7 +74,8 @@ jQuery(document).ready(function ($) {
     var button = $(this);
     var page = button.data("page");
     var nonce = button.data("nonce");
-    var posts_per_page = 10; // Match the posts_per_page in the shortcode
+    var posts_per_page = button.data("posts-per-page") || 10;
+    var playlist = button.data("playlist") || '';
 
     // Add loading state
     button.prop('disabled', true).addClass('is-loading');
@@ -83,9 +84,10 @@ jQuery(document).ready(function ($) {
       url: mp3_ajax_params.ajax_url,
       type: "POST",
       data: {
-        action: "mp3_load_more_tracks", // Updated action name to match PHP function
+        action: "mp3_load_more_tracks",
         page: page,
         posts_per_page: posts_per_page,
+        playlist: playlist,
         nonce: nonce
       },
       success: function (response) {
