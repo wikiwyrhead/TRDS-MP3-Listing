@@ -73,7 +73,6 @@ jQuery(document).ready(function ($) {
   $(".load-more-button").on("click", function () {
     var button = $(this);
     var page = button.data("page");
-    var nonce = button.data("nonce");
     var posts_per_page = button.data("posts-per-page") || 10;
     var playlist = button.data("playlist") || '';
 
@@ -81,14 +80,14 @@ jQuery(document).ready(function ($) {
     button.prop('disabled', true).addClass('is-loading');
 
     $.ajax({
-      url: mp3_ajax_params.ajax_url,
+      url: mp3_frontend_params.ajax_url,
       type: "POST",
       data: {
         action: "mp3_load_more_tracks",
         page: page,
         posts_per_page: posts_per_page,
         playlist: playlist,
-        nonce: nonce
+        nonce: mp3_frontend_params.nonce
       },
       success: function (response) {
         // Remove loading state
