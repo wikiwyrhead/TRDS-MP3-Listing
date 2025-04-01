@@ -41,10 +41,16 @@ Navigate to MP3 Files > Settings to customize:
 
 ## Changelog
 
+### Version 1.2.2 (2024-04-01)
+
+#### Fixed
+- Load more functionality now works correctly for both logged-in and logged-out users
+- Fixed CSS Google Fonts import rule positioning
+- Improved AJAX parameters handling for better security and functionality
+
 ### Version 1.2.1 (2024-03-31)
 
 #### Changed
-
 - Updated audio player color scheme to match the overall design
 - Refined button colors for better visual consistency
 - Improved audio player controls visibility

@@ -4,7 +4,7 @@
  * Plugin Name: TRDS MP3 Listing
  * Plugin URI: https://github.com/wikiwyrhead/TRDS-MP3-Listing/
  * Description: A simple plugin to upload, manage, and list MP3 files with download and social media share buttons. Includes a backend for uploading MP3s and a shortcode to display the audio listing on the frontend. Allows customization of button and title colors via a settings submenu under MP3 Files.
- * Version: 1.2.1
+ * Version: 1.2.2
  * Author: Arnel Go
  * Author URI: https://arnelgo.info/
  * License: GPLv2 or later
@@ -17,7 +17,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Plugin version
-define('TRDS_MP3_PLUGIN_VERSION', '1.2.1');
+define('TRDS_MP3_PLUGIN_VERSION', '1.2.2');
 
 function force_download_mp3()
 {
@@ -349,7 +349,7 @@ function mp3_frontend_scripts()
     wp_enqueue_script('mp3-upload', plugin_dir_url(__FILE__) . 'assets/js/mp3-upload.js', array('jquery'), '1.0', true);
     wp_enqueue_style('mp3-listing-style', plugin_dir_url(__FILE__) . 'assets/css/mp3-style.css', array(), '1.0');
     wp_localize_script('mp3-upload', 'mp3_ajax_params', array('ajax_url' => admin_url('admin-ajax.php')));
-
+    
     // Additional frontend JavaScript for load more functionality
     wp_enqueue_script(
         'mp3-frontend-scripts',
@@ -359,9 +359,10 @@ function mp3_frontend_scripts()
         true
     );
 
-    // Localize script with AJAX URL
-    wp_localize_script('mp3-frontend-scripts', 'mp3_ajax', array(
-        'ajaxurl' => admin_url('admin-ajax.php')
+    // Localize script with AJAX URL and nonce for both logged-in and logged-out users
+    wp_localize_script('mp3-frontend-scripts', 'mp3_frontend_params', array(
+        'ajax_url' => admin_url('admin-ajax.php'),
+        'nonce' => wp_create_nonce('mp3_load_more_nonce')
     ));
 
     // Add loading state styles
@@ -752,7 +753,6 @@ function mp3_listing_shortcode($atts)
         $output .= '<div class="load-more-container">
             <button class="load-more-button" 
                 data-page="2" 
-                data-nonce="' . wp_create_nonce('mp3_load_more_nonce') . '"
                 data-posts-per-page="' . esc_attr($atts['posts_per_page']) . '"
                 data-playlist="' . esc_attr($atts['playlist']) . '">
                 Load More
