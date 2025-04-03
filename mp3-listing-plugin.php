@@ -4,7 +4,7 @@
  * Plugin Name: TRDS MP3 Listing
  * Plugin URI: https://github.com/wikiwyrhead/TRDS-MP3-Listing/
  * Description: A simple plugin to upload, manage, and list MP3 files with download and social media share buttons. Includes a backend for uploading MP3s and a shortcode to display the audio listing on the frontend. Allows customization of button and title colors via a settings submenu under MP3 Files.
- * Version: 1.2.2
+ * Version: 1.2.3
  * Author: Arnel Go
  * Author URI: https://arnelgo.info/
  * License: GPLv2 or later
@@ -17,7 +17,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Plugin version
-define('TRDS_MP3_PLUGIN_VERSION', '1.2.2');
+define('TRDS_MP3_PLUGIN_VERSION', '1.2.3');
 
 function force_download_mp3()
 {
