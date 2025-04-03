@@ -641,10 +641,68 @@ function mp3_listing_shortcode($atts)
 {
     $atts = shortcode_atts(array(
         'posts_per_page' => 10,
-        'playlist' => '', // Add playlist parameter
+        'playlist' => '',
     ), $atts);
 
     $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+
+    // Get playlist title if playlist is specified
+    $playlist_title = 'KHOUTBAH';
+    if (!empty($atts['playlist'])) {
+        $playlist = get_term_by('slug', $atts['playlist'], 'mp3_playlist');
+        if ($playlist) {
+            $playlist_title = strtoupper($playlist->name);
+        }
+    }
+
+    // Output container with search bar
+    $output = '<div class="mp3-listing-container">
+        <div class="mp3-search-container">
+            <input type="text" class="mp3-search-input" placeholder="SEARCH ' . esc_attr($playlist_title) . '" />
+            <div class="mp3-search-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </div>
+        </div>';
+
+    // Add a hidden container for all items (used for search)
+    $output .= '<div class="mp3-all-items" style="display: none;">';
+    
+    // Query ALL items without pagination
+    $all_args = array(
+        'post_type' => 'mp3_listing',
+        'posts_per_page' => -1,
+        'orderby' => 'date',
+        'order' => 'DESC'
+    );
+
+    // Add taxonomy query if playlist is specified
+    if (!empty($atts['playlist'])) {
+        $all_args['tax_query'] = array(
+            array(
+                'taxonomy' => 'mp3_playlist',
+                'field' => 'slug',
+                'terms' => $atts['playlist']
+            )
+        );
+    }
+
+    $all_query = new WP_Query($all_args);
+    
+    if ($all_query->have_posts()) {
+        while ($all_query->have_posts()) {
+            $all_query->the_post();
+            $output .= '<div class="mp3-search-item" data-title="' . esc_attr(get_the_title()) . '"></div>';
+        }
+    }
+    wp_reset_postdata();
+    
+    $output .= '</div>';
+
+    // Regular visible list with pagination
+    $output .= '<ul class="mp3-list">';
 
     $args = array(
         'post_type' => 'mp3_listing',
@@ -666,10 +724,6 @@ function mp3_listing_shortcode($atts)
     }
 
     $query = new WP_Query($args);
-
-    // Output container with original classes
-    $output = '<div class="mp3-listing-container">
-        <ul class="mp3-list">';
 
     if ($query->have_posts()) {
         while ($query->have_posts()) {
@@ -754,7 +808,8 @@ function mp3_listing_shortcode($atts)
             <button class="load-more-button" 
                 data-page="2" 
                 data-posts-per-page="' . esc_attr($atts['posts_per_page']) . '"
-                data-playlist="' . esc_attr($atts['playlist']) . '">
+                data-playlist="' . esc_attr($atts['playlist']) . '"
+                data-nonce="' . wp_create_nonce('mp3_load_more_nonce') . '">
                 Load More
             </button>
         </div>';

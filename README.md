@@ -9,6 +9,7 @@ A WordPress plugin for listing and playing MP3 files with download and share fun
 - Social media sharing (Facebook, Twitter, WhatsApp)
 - Play count tracking
 - Load more functionality for paginated display
+- Real-time search functionality with dynamic playlist title
 - Customizable color scheme
 - Mobile-friendly interface
 
@@ -30,6 +31,11 @@ Add the MP3 listing to any page or post using the shortcode:
 [mp3_listing]
 ```
 
+For a specific playlist:
+```
+[mp3_listing playlist="your-playlist-name"]
+```
+
 ### Customization
 
 Navigate to MP3 Files > Settings to customize:
@@ -40,6 +46,19 @@ Navigate to MP3 Files > Settings to customize:
 - Audio player color
 
 ## Changelog
+
+### Version 1.2.3 (2024-04-02)
+
+#### Added
+- Real-time search functionality across all items
+- Dynamic search placeholder showing current playlist title
+- Automatic loading of matching items during search
+- Search term highlighting for better user experience
+
+#### Improved
+- Search now works across all items without requiring manual loading
+- Enhanced user experience with instant search results
+- Better state management for load more functionality during search
 
 ### Version 1.2.2 (2024-04-01)
 

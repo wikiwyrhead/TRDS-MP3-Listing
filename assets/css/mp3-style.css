@@ -363,3 +363,53 @@ body {
     padding: 6px 8px;
   }
 }
+
+/* Search Container Styles */
+.mp3-search-container {
+    margin: 0 0 20px 0;
+    position: relative;
+    max-width: 100%;
+    border-bottom: 1px solid #ddd;
+}
+
+.mp3-search-input {
+    width: 100%;
+    padding: 8px 40px 8px 0;
+    border: none;
+    font-family: inherit;
+    font-size: 14px;
+    background: transparent;
+    color: #333;
+    outline: none;
+}
+
+.mp3-search-input::placeholder {
+    color: #999;
+    opacity: 1;
+}
+
+.mp3-search-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    pointer-events: none;
+}
+
+/* Highlight search matches */
+.mp3-title .highlight {
+    background-color: rgba(225, 125, 119, 0.1);
+    padding: 2px 0;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .mp3-search-container {
+        margin: 0 10px 15px 10px;
+    }
+    
+    .mp3-search-input {
+        font-size: 13px;
+    }
+}
